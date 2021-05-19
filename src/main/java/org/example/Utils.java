@@ -16,6 +16,7 @@ public class Utils extends BasePage {
         WebDriverWait wait = new WebDriverWait(driver,time);
         wait.until(ExpectedConditions.elementToBeClickable(by));
     }
+
     // method to select from drop down by value
     public static void selectFromDropDownByValue(By by, String value) {
         Select select = new Select(driver.findElement(by));
@@ -44,7 +45,8 @@ public class Utils extends BasePage {
     }
  }
     // method to get text
-    public static String getTextFromElement(By by){
+    public static String getTextFromElement(By by)
+    {
        return driver.findElement(by).getText();
     }
     // method to enter text
@@ -53,8 +55,18 @@ public class Utils extends BasePage {
 
     }
     //method to click on element
-    public static void clickOnElement(By by){
+    public static void clickOnElement(By by)
+    {
         driver.findElement(by).click();
     }
+    public static String timestamp (By by){
+
+        return driver.findElement(by).getText();
+    }
+public static String getSelectedTextFromDropDown (By by){
+
+        Select select = new Select(driver.findElement(by));
+        return select.getFirstSelectedOption().getText();
+}
 
 }

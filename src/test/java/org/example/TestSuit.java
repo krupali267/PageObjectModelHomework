@@ -6,7 +6,7 @@ public class TestSuit extends BaseTest {
     // object of each class
     HomePage homePage = new HomePage();
     RegisterPage registerPage = new RegisterPage();
-    NikeProducts searchProductsDisplayed = new NikeProducts();
+    NikeProducts nikeProducts = new NikeProducts();
     ComputerPage computerPage = new ComputerPage();
     SoftwarePage softwarePage = new SoftwarePage();
     NewOnlinePage newOnlinePage = new NewOnlinePage();
@@ -15,29 +15,30 @@ public class TestSuit extends BaseTest {
     @Test
     public void userShouldBeAbleToRegisterSuccessfully(){
         homePage.clickOnRegisterButton();
-        registerPage.enterRegistertationDetails();
+        registerPage.enterRegisterationDetails();
 
     }
     @Test
     public void userShouldBeAbleToChangeCurrency()
     {
-    homePage.selectCurrency();
-    resultVerificationPage.verifyCurrencyDisplayed();
+   homePage.verifyCurrencySymbolInEachPrice();
+    homePage.changeCurrency();
+    homePage.verifyCurrencySymbolInEachPrice();
 
     }
     @Test
     public void userShouldBeAbleToSearchProductsSuccessfully()
     {
     homePage.nikeProductsSearch();
-    searchProductsDisplayed.nikeProductsDisplayed();
-    resultVerificationPage.searchNikeProducts();
+    nikeProducts.nikeProductsDisplayed();
+
     }
     @Test
     public void userShouldBeAbleToSeeAddToCartButtonForAllProducts()
     {
     homePage.addToCartButton();
     computerPage.clickOnSoftware();
-    softwarePage.clickOnSoftwareButton();
+    softwarePage.verifyAddtoCardButtonPresent();
 
     }
     @Test
@@ -46,5 +47,6 @@ public class TestSuit extends BaseTest {
         newOnlinePage.leaveComment();
         resultVerificationPage.verifyCommentAdded();
         resultVerificationPage.verifyCommentPresentInComments();
+        resultVerificationPage.verifyComment();
     }
 }

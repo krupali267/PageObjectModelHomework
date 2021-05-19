@@ -2,22 +2,35 @@ package org.example;
 
 import com.sun.deploy.security.SelectableSecurityManager;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
+
+import java.util.List;
 
 public class SoftwarePage extends Utils{
 
-    public void clickOnSoftwareButton(){
-        // list of all products in Software
-        productList(By.xpath("//h2[@class='product-title']"));
-        waitForClickable(By.xpath("//button[@class='button-2 product-box-add-to-cart-button']"),5000);
+    By itemBoxesField = By.className("item-box");
+    By addToCartButtonField = By.cssSelector("button.button-2.product-box-add-to-cart-button");
+    By productNameField = By.cssSelector("h2.product-title > a");
 
-        // condition to check all products has add to cart button
-    if (getTextFromElement(By.xpath("//button[@class='button-2 product-box-add-to-cart-button']")).contains("Add to cart"))
-    {
+        public  void verifyAddtoCardButtonPresent(){
 
-    }
-    else {
-            System.out.println(getTextFromElement(By.xpath("//h2[@class='product-title']")).contains("No Cart Button"));
+        // to find number of items
+            List<WebElement> webElementList = driver.findElements(itemBoxesField);
+            int count = 0, noofbutton = 0;
+
+            for (WebElement element : webElementList){
+                if(element.findElements(addToCartButtonField).size() == 1){
+                    count++;
+                }
+                if (element.findElements(addToCartButtonField).size() != 1){
+                    noofbutton++;
+                    System.out.println(element.findElement(productNameField).getText()+ ">>>> No Add To Cart Button");
+                }
+            }
+            Assert.assertEquals(count,webElementList.size(),"Add to cart button should be"+webElementList.size()+" but it is "+count+"\n");
+            System.out.println("Add to cart button present in each product on this page");
         }
 
-}
+
 }
