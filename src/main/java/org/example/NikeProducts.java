@@ -9,20 +9,20 @@ import java.util.WeakHashMap;
 
 public class NikeProducts extends Utils{
 
-    private By _itemBoxes = By.className("item-box");
+    private By _itemBoxes = By.cssSelector("div.item-box");
     private By _productNames = By.cssSelector("h2.product-title");
-
     public void nikeProductsDisplayed()
-{
-
+    {
+        waitForClickable(_productNames,50);
     //to find number of items
     List<WebElement> webElementList = driver.findElements(_itemBoxes);
     int count = 0;
     // list of items
     for(WebElement element : webElementList){
-        if(element.findElement(_productNames).getText().contains("Nike")){
+        if(element.findElement(_productNames).getText().contains("Nike"))
+        {
             // to print product title when above condition becomes true
-            System.out.println(element.findElement((_productNames)).getText());
+            System.out.println(element.findElement(_productNames).getText());
             // to count all product titles
             count++;
         }

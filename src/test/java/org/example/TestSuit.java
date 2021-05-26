@@ -44,9 +44,20 @@ public class TestSuit extends BaseTest {
     @Test
     public void userShouldBeAbleToAddAndSeeNewComments(){
         homePage.commentForNewOnlineStore();
-        newOnlinePage.leaveComment();
-        resultVerificationPage.verifyCommentAdded();
-        resultVerificationPage.verifyCommentPresentInComments();
-        resultVerificationPage.verifyComment();
+        newOnlinePage.verifyCommentAddedSuccessMessage();
+        newOnlinePage.verifyCommentPresentInCommentList();
+        newOnlinePage.verifyCommentsAddedAtLastInTheList();
+
+    }
+    @Test
+    public void searchAlertHandling(){
+        homePage.clickOnSearchAlert();
+
+    }
+
+    @Test
+    public void facebookWindowHandling(){
+
+        homePage.facebookWindowHandling();
     }
 }

@@ -9,7 +9,7 @@ import java.util.List;
 
 public class SoftwarePage extends Utils{
 
-    By itemBoxesField = By.className("item-box");
+    By itemBoxesField = By.cssSelector("div.item-box");
     By addToCartButtonField = By.cssSelector("button.button-2.product-box-add-to-cart-button");
     By productNameField = By.cssSelector("h2.product-title > a");
 

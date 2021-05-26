@@ -1,12 +1,18 @@
 package org.example;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class Utils extends BasePage {
@@ -59,14 +65,22 @@ public class Utils extends BasePage {
     {
         driver.findElement(by).click();
     }
-    public static String timestamp (By by){
-
-        return driver.findElement(by).getText();
+    public static String dateStamp (){
+        SimpleDateFormat format = new SimpleDateFormat("ddmmyyHHmmss");
+        return format.format(new Date());
     }
-public static String getSelectedTextFromDropDown (By by){
+    // method to get text from dropdown
+    public static String getSelectedTextFromDropDown (By by){
 
         Select select = new Select(driver.findElement(by));
         return select.getFirstSelectedOption().getText();
-}
-
+    }
+    public  static void captureScreenShot (String screenShotName){
+        File screenShotFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        try{
+            FileUtils.copyFile(screenShotFile,new File("src\\test\\resources\\Screenshots"+screenShotName+dateStamp()+".jpg"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

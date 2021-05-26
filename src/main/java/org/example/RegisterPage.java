@@ -7,23 +7,23 @@ import java.sql.Timestamp;
 public class RegisterPage extends Utils{
 
     LoadProperty loadProperty = new LoadProperty();
-    private By _register = By.linkText("Register");
-    private By _firstName = By.id("FirstName");
-    private By _lastName = By.id("LastName");
-    private By _dateOfBirth = By.name("DateOfBirthDay");
-    private By _monthOfBirth = By.name("DateOfBirthMonth");
-    private By _yearOfBirth = By.name("DateOfBirthYear");
-    private By _emailId = By.xpath("//input[@id='Email']");
-    private By _companyName = By.xpath("//input[@id='Company']");
-    private By _password = By.id("Password");
-    private By _confirmPassword = By.name("register-button");
+    private By _register = By.xpath("//a[text()='Register']");
+    private By _firstName = By.cssSelector("input#FirstName");
+    private By _lastName = By.cssSelector("input#LastName");
+    private By _dateOfBirth = By.xpath("//select[contains(@name, 'DateOfBirthDay')]");
+    private By _monthOfBirth = By.xpath("//select[contains(@name, 'DateOfBirthMonth')]");
+    private By _yearOfBirth = By.xpath("//select[contains(@name, 'DateOfBirthYear')]");
+    private By _emailId = By.cssSelector("input#Email");
+    private By _companyName = By.cssSelector("input#Company");
+    private By _password = By.cssSelector("input#Password");
+    private By _confirmPassword = By.cssSelector("input#ConfirmPassword");
 
     public void enterRegisterationDetails(){
         // timestamp for current time - to cr
         // create unique value each time we run the program
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         // wait before clicking on Register button
-        waitForClickable (_register,6000);
+        waitForClickable (_register,5000);
         //select gender
         clickOnElement(By.xpath("//input[@id='gender-male']"));
         // type first name
